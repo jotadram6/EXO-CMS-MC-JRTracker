@@ -43,12 +43,17 @@ cmd.getoutput('sed -i -- "s/DATE/'+StringITime+'/g" '+BaseDirectory+SiteName+'/i
 #Getting DB of requests to be checked
 from ListOfRequests import *
 
+#Getting functions to fetch status
+from GettingStatus import *
+
 TemplateBlock='  <tr>\n    <td>REQUEST</td>\n    <td style="color:Tomato;">STATUS</td>\n    <td>CONTACT</td>\n    <td>ANALYZER</td>\n    <td> <a href="https://cms-pdmv.cern.ch/mcm/requests?range=REQI,REQF">McM Link</a> </td>\n  </tr>\n'
 
 FillingTable=''
 
 for i in ListOfRequests:
-    FillingTable=FillingTable+TemplateBlock.replace('REQUEST',i.Name).replace('CONTACT',i.Contact).replace('ANALYZER',i.Analyzer).replace('REQI',i.PrepIds[0]).replace('REQF',i.PrepIds[-1])
+    FetchedMcMStatus='MCM: '+McMStatus(i.PrepIds)
+    FetchedProdStauts='PROD: '+StringOfStatus(i.PrepIds)
+    FillingTable=FillingTable+TemplateBlock.replace('REQUEST',i.Name).replace('CONTACT',i.Contact).replace('ANALYZER',i.Analyzer).replace('REQI',i.PrepIds[0]).replace('REQF',i.PrepIds[-1]).replace('STATUS',FetchedMcMStatus+' and '+FetchedProdStauts)
     print FillingTable
 
 #cmd.getoutput('sed -i -- "s#FILLTABLEHERE#'+FillingTable+'#g" '+BaseDirectory+SiteName+'/index.html')
