@@ -43,7 +43,39 @@ DarkHiggs2016=EXORequest('Dark Higgs','Samuel Baxter','Jose Ruiz',['EXO-RunIISum
                                                                    'EXO-RunIISummer15wmLHEGS-05246',
                                                                    'EXO-RunIISummer15wmLHEGS-05247',
                                                                    'EXO-RunIISummer15wmLHEGS-05248'])
+DiJet=EXORequest('DiJet','Cristina Mantilla','Jose Ruiz',['EXO-RunIISummer15wmLHEGS-05253',
+                                                          'EXO-RunIISummer15wmLHEGS-05254',
+                                                          'EXO-RunIISummer15wmLHEGS-05255',
+                                                          'EXO-RunIISummer15wmLHEGS-05256',
+                                                          'EXO-RunIISummer15wmLHEGS-05257',
+                                                          'EXO-RunIISummer15wmLHEGS-05258',
+                                                          'EXO-RunIISummer15wmLHEGS-05259',
+                                                          'EXO-RunIISummer15wmLHEGS-05260',
+                                                          'EXO-RunIISummer15wmLHEGS-05261',
+                                                          'EXO-RunIISummer15wmLHEGS-05262',
+                                                          'EXO-RunIISummer15wmLHEGS-05263',
+                                                          'EXO-RunIISummer15wmLHEGS-05264',
+                                                          'EXO-RunIISummer15wmLHEGS-05265',
+                                                          'EXO-RunIISummer15wmLHEGS-05266',
+                                                          'EXO-RunIISummer15wmLHEGS-05267',
+                                                          'EXO-RunIISummer15wmLHEGS-05268',
+                                                          'EXO-RunIISummer15wmLHEGS-05269',
+                                                          'EXO-RunIISummer15wmLHEGS-05270',
+                                                          'EXO-RunIISummer15wmLHEGS-05271',
+                                                          'EXO-RunIISummer15wmLHEGS-05272',
+                                                          'EXO-RunIISummer15wmLHEGS-05273',
+                                                          'EXO-RunIISummer15wmLHEGS-05274',
+                                                          'EXO-RunIISummer15wmLHEGS-05275',
+                                                          'EXO-RunIISummer15wmLHEGS-05276',
+                                                          'EXO-RunIISummer15wmLHEGS-05277',
+                                                          'EXO-RunIISummer15wmLHEGS-05278',
+                                                          'EXO-RunIISummer15wmLHEGS-05279',
+                                                          'EXO-RunIISummer15wmLHEGS-05280',
+                                                          'EXO-RunIISummer15wmLHEGS-05281',
+                                                          'EXO-RunIISummer15wmLHEGS-05282',
+                                                          'EXO-RunIISummer15wmLHEGS-05283'])
 
 ListOfRequests=[]
 ListOfRequests.append(MonoZ)
 ListOfRequests.append(DarkHiggs2016)
+ListOfRequests.append(DiJet)
