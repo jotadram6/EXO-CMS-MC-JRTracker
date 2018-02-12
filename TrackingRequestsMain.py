@@ -1,7 +1,7 @@
 #!/bin/python
 
 DEBUG = False
-DoNotify = False
+DoNotify = True
 
 import GetPassword #Safely parsing the username and password
 import smtplib #Library to send email notifications
@@ -52,8 +52,9 @@ TemplateBlock='  <tr>\n    <td>REQUEST</td>\n    <td style="color:Tomato;">STATU
 FillingTable=''
 
 for i in ListOfRequests:
-    FetchedMcMStatus='MCM: '+McMStatus(i.PrepIds)
-    #FetchedProdStauts='PROD: '+StringOfStatus(i.PrepIds)
+    #FetchedMcMStatus='MCM: '+McMStatus(i.PrepIds) #Full string with status
+    FetchedMcMStatus='MCM: '+PercentageProdMcM(i.PrepIds)
+    #FetchedProdStauts='PROD: '+StringOfStatus(i.PrepIds) #Full string with status
     FetchedProdStauts='PROD: '+PercentageProd(i.PrepIds)
     FillingTable=FillingTable+TemplateBlock.replace('REQUEST',i.Name).replace('CONTACT',i.Contact).replace('ANALYZER',i.Analyzer).replace('REQI',i.PrepIds[0]).replace('REQF',i.PrepIds[-1]).replace('STATUS',FetchedMcMStatus+' and '+FetchedProdStauts)
     msg = 'From: jruizalv@cern.ch\nSubject: Status of your EXO MC requests\n\nDear EXO analyzer,\n\nYour MC EXO requests from '+i.PrepIds[0]+' to '+i.PrepIds[-1]+' are in status:\n'+FetchedMcMStatus+'\n\n'+FetchedProdStauts+'\n\nPlease check:\nhttp://jruizalv.web.cern.ch/jruizalv/'+SiteName+'/ \nfor more details\n\nBest regards,\nMC&I group'

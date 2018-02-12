@@ -12,7 +12,7 @@ class EXORequest:
         self.Emails = ListOfEmails
 
 #List of requests
-MonoZ=EXORequest('MonoZ validation','Andreas Albert','Jose Ruiz',['EXO-RunIISummer15wmLHEGS-05249','EXO-RunIISummer15wmLHEGS-05250'], ['andreas.albert@cern.ch'])
+MonoZ=EXORequest('MonoZ validation','Andreas Albert','Jose Ruiz',['EXO-RunIISummer15wmLHEGS-05249','EXO-RunIISummer15wmLHEGS-05250'], ['andreas.albert@cern.ch','cms-exo-mcrequests@cern.ch'])
 DarkHiggs2016=EXORequest('Dark Higgs','Samuel Baxter','Jose Ruiz',['EXO-RunIISummer15wmLHEGS-05218',
                                                                    'EXO-RunIISummer15wmLHEGS-05219',
                                                                    'EXO-RunIISummer15wmLHEGS-05220',
@@ -43,7 +43,7 @@ DarkHiggs2016=EXORequest('Dark Higgs','Samuel Baxter','Jose Ruiz',['EXO-RunIISum
                                                                    'EXO-RunIISummer15wmLHEGS-05245',
                                                                    'EXO-RunIISummer15wmLHEGS-05246',
                                                                    'EXO-RunIISummer15wmLHEGS-05247',
-                                                                   'EXO-RunIISummer15wmLHEGS-05248'], ['jose.ruiz@cern.ch'])
+                                                                   'EXO-RunIISummer15wmLHEGS-05248'], ['samuel.baxter@desy.de','cms-exo-mcrequests@cern.ch'])
 DiJet=EXORequest('DiJet','Cristina Mantilla','Jose Ruiz',['EXO-RunIIFall17wmLHEGS-00049',
                                                           'EXO-RunIIFall17wmLHEGS-00050',
                                                           'EXO-RunIIFall17wmLHEGS-00051',
@@ -75,7 +75,7 @@ DiJet=EXORequest('DiJet','Cristina Mantilla','Jose Ruiz',['EXO-RunIIFall17wmLHEG
                                                           'EXO-RunIIFall17wmLHEGS-00077',
                                                           'EXO-RunIIFall17wmLHEGS-00078',
                                                           'EXO-RunIIFall17wmLHEGS-00079',
-                                                          'EXO-RunIIFall17wmLHEGS-00080'], ['jose.ruiz@cern.ch'])
+                                                          'EXO-RunIIFall17wmLHEGS-00080'], ['cristina.ana.mantilla.suarez@cern.ch','cms-exo-mcrequests@cern.ch'])
 
 ADDMonophoton=EXORequest('Monophoton ADD extension','Bhawna Gomber','Jose Ruiz',['EXO-RunIIFall17GS-00037',
                                                                                  'EXO-RunIIFall17GS-00038',
@@ -91,7 +91,7 @@ ADDMonophoton=EXORequest('Monophoton ADD extension','Bhawna Gomber','Jose Ruiz',
                                                                                  'EXO-RunIIFall17GS-00048',
                                                                                  'EXO-RunIIFall17GS-00049',
                                                                                  'EXO-RunIIFall17GS-00050',
-                                                                                 'EXO-RunIIFall17GS-00051'], ['jose.ruiz@cern.ch'])
+                                                                                 'EXO-RunIIFall17GS-00051'], ['Bhawna.Gomber@cern.ch','cms-exo-mcrequests@cern.ch'])
 
 ListOfRequests=[]
 ListOfRequests.append(MonoZ)
