@@ -77,7 +77,24 @@ DiJet=EXORequest('DiJet','Cristina Mantilla','Jose Ruiz',['EXO-RunIIFall17wmLHEG
                                                           'EXO-RunIIFall17wmLHEGS-00079',
                                                           'EXO-RunIIFall17wmLHEGS-00080'], ['jose.ruiz@cern.ch'])
 
+ADDMonophoton=EXORequest('Monophoton ADD extension','Bhawna Gomber','Jose Ruiz',['EXO-RunIIFall17GS-00037',
+                                                                                 'EXO-RunIIFall17GS-00038',
+                                                                                 'EXO-RunIIFall17GS-00039',
+                                                                                 'EXO-RunIIFall17GS-00040',
+                                                                                 'EXO-RunIIFall17GS-00041',
+                                                                                 'EXO-RunIIFall17GS-00042',
+                                                                                 'EXO-RunIIFall17GS-00043',
+                                                                                 'EXO-RunIIFall17GS-00044',
+                                                                                 'EXO-RunIIFall17GS-00045',
+                                                                                 'EXO-RunIIFall17GS-00046',
+                                                                                 'EXO-RunIIFall17GS-00047',
+                                                                                 'EXO-RunIIFall17GS-00048',
+                                                                                 'EXO-RunIIFall17GS-00049',
+                                                                                 'EXO-RunIIFall17GS-00050',
+                                                                                 'EXO-RunIIFall17GS-00051'], ['jose.ruiz@cern.ch'])
+
 ListOfRequests=[]
 ListOfRequests.append(MonoZ)
 ListOfRequests.append(DarkHiggs2016)
 ListOfRequests.append(DiJet)
+ListOfRequests.append(ADDMonophoton)
