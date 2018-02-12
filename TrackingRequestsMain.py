@@ -54,7 +54,11 @@ for i in ListOfRequests:
     FetchedMcMStatus='MCM: '+McMStatus(i.PrepIds)
     FetchedProdStauts='PROD: '+StringOfStatus(i.PrepIds)
     FillingTable=FillingTable+TemplateBlock.replace('REQUEST',i.Name).replace('CONTACT',i.Contact).replace('ANALYZER',i.Analyzer).replace('REQI',i.PrepIds[0]).replace('REQF',i.PrepIds[-1]).replace('STATUS',FetchedMcMStatus+' and '+FetchedProdStauts)
-    print FillingTable
+    msg = 'From: jruizalv@cern.ch\nSubject: Status of your EXO MC requests\n\nDear EXO analyzer,\n\nYour MC EXO requests from '+i.PrepIds[0]+' to '+i.PrepIds[-1]+' are in status:\n'+FetchedMcMStatus+'\n\n'+FetchedProdStauts+'\n\nPlease check:\nhttp://jruizalv.web.cern.ch/jruizalv/'+SiteName+'/ \nfor more details\n\nBest regards,\nMC&I group'
+    server.sendmail(User+"@cern.ch", i.Emails, msg)
+    if DEBUG:
+        print "A notification email to", i.Emails, "has been sent"
+        print FillingTable
 
 #cmd.getoutput('sed -i -- "s#FILLTABLEHERE#'+FillingTable+'#g" '+BaseDirectory+SiteName+'/index.html')
 index_html=open(BaseDirectory+SiteName+'/index.html','r')

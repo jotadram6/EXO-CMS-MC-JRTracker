@@ -4,14 +4,15 @@
 #}
 
 class EXORequest:
-    def __init__(self, RequestName, Analyzer, Contact, ListOfPrepids):
+    def __init__(self, RequestName, Analyzer, Contact, ListOfPrepids, ListOfEmails):
         self.Name = RequestName
         self.Analyzer = Analyzer
         self.Contact = Contact
         self.PrepIds = ListOfPrepids
+        self.Emails = ListOfEmails
 
 #List of requests
-MonoZ=EXORequest('MonoZ validation','Andreas Albert','Jose Ruiz',['EXO-RunIISummer15wmLHEGS-05249','EXO-RunIISummer15wmLHEGS-05250'])
+MonoZ=EXORequest('MonoZ validation','Andreas Albert','Jose Ruiz',['EXO-RunIISummer15wmLHEGS-05249','EXO-RunIISummer15wmLHEGS-05250'], ['andreas.albert@cern.ch'])
 DarkHiggs2016=EXORequest('Dark Higgs','Samuel Baxter','Jose Ruiz',['EXO-RunIISummer15wmLHEGS-05218',
                                                                    'EXO-RunIISummer15wmLHEGS-05219',
                                                                    'EXO-RunIISummer15wmLHEGS-05220',
@@ -42,38 +43,39 @@ DarkHiggs2016=EXORequest('Dark Higgs','Samuel Baxter','Jose Ruiz',['EXO-RunIISum
                                                                    'EXO-RunIISummer15wmLHEGS-05245',
                                                                    'EXO-RunIISummer15wmLHEGS-05246',
                                                                    'EXO-RunIISummer15wmLHEGS-05247',
-                                                                   'EXO-RunIISummer15wmLHEGS-05248'])
-DiJet=EXORequest('DiJet','Cristina Mantilla','Jose Ruiz',['EXO-RunIISummer15wmLHEGS-05253',
-                                                          'EXO-RunIISummer15wmLHEGS-05254',
-                                                          'EXO-RunIISummer15wmLHEGS-05255',
-                                                          'EXO-RunIISummer15wmLHEGS-05256',
-                                                          'EXO-RunIISummer15wmLHEGS-05257',
-                                                          'EXO-RunIISummer15wmLHEGS-05258',
-                                                          'EXO-RunIISummer15wmLHEGS-05259',
-                                                          'EXO-RunIISummer15wmLHEGS-05260',
-                                                          'EXO-RunIISummer15wmLHEGS-05261',
-                                                          'EXO-RunIISummer15wmLHEGS-05262',
-                                                          'EXO-RunIISummer15wmLHEGS-05263',
-                                                          'EXO-RunIISummer15wmLHEGS-05264',
-                                                          'EXO-RunIISummer15wmLHEGS-05265',
-                                                          'EXO-RunIISummer15wmLHEGS-05266',
-                                                          'EXO-RunIISummer15wmLHEGS-05267',
-                                                          'EXO-RunIISummer15wmLHEGS-05268',
-                                                          'EXO-RunIISummer15wmLHEGS-05269',
-                                                          'EXO-RunIISummer15wmLHEGS-05270',
-                                                          'EXO-RunIISummer15wmLHEGS-05271',
-                                                          'EXO-RunIISummer15wmLHEGS-05272',
-                                                          'EXO-RunIISummer15wmLHEGS-05273',
-                                                          'EXO-RunIISummer15wmLHEGS-05274',
-                                                          'EXO-RunIISummer15wmLHEGS-05275',
-                                                          'EXO-RunIISummer15wmLHEGS-05276',
-                                                          'EXO-RunIISummer15wmLHEGS-05277',
-                                                          'EXO-RunIISummer15wmLHEGS-05278',
-                                                          'EXO-RunIISummer15wmLHEGS-05279',
-                                                          'EXO-RunIISummer15wmLHEGS-05280',
-                                                          'EXO-RunIISummer15wmLHEGS-05281',
-                                                          'EXO-RunIISummer15wmLHEGS-05282',
-                                                          'EXO-RunIISummer15wmLHEGS-05283'])
+                                                                   'EXO-RunIISummer15wmLHEGS-05248'], ['jose.ruiz@cern.ch'])
+DiJet=EXORequest('DiJet','Cristina Mantilla','Jose Ruiz',['EXO-RunIIFall17wmLHEGS-00049',
+                                                          'EXO-RunIIFall17wmLHEGS-00050',
+                                                          'EXO-RunIIFall17wmLHEGS-00051',
+                                                          'EXO-RunIIFall17wmLHEGS-00052',
+                                                          'EXO-RunIIFall17wmLHEGS-00053',
+                                                          'EXO-RunIIFall17wmLHEGS-00054',
+                                                          'EXO-RunIIFall17wmLHEGS-00055',
+                                                          'EXO-RunIIFall17wmLHEGS-00056',
+                                                          'EXO-RunIIFall17wmLHEGS-00057',
+                                                          'EXO-RunIIFall17wmLHEGS-00058',
+                                                          'EXO-RunIIFall17wmLHEGS-00059',
+                                                          'EXO-RunIIFall17wmLHEGS-00060',
+                                                          'EXO-RunIIFall17wmLHEGS-00061',
+                                                          'EXO-RunIIFall17wmLHEGS-00062',
+                                                          'EXO-RunIIFall17wmLHEGS-00063',
+                                                          'EXO-RunIIFall17wmLHEGS-00064',
+                                                          'EXO-RunIIFall17wmLHEGS-00065',
+                                                          'EXO-RunIIFall17wmLHEGS-00066',
+                                                          'EXO-RunIIFall17wmLHEGS-00067',
+                                                          'EXO-RunIIFall17wmLHEGS-00068',
+                                                          'EXO-RunIIFall17wmLHEGS-00069',
+                                                          'EXO-RunIIFall17wmLHEGS-00070',
+                                                          'EXO-RunIIFall17wmLHEGS-00071',
+                                                          'EXO-RunIIFall17wmLHEGS-00072',
+                                                          'EXO-RunIIFall17wmLHEGS-00073',
+                                                          'EXO-RunIIFall17wmLHEGS-00074',
+                                                          'EXO-RunIIFall17wmLHEGS-00075',
+                                                          'EXO-RunIIFall17wmLHEGS-00076',
+                                                          'EXO-RunIIFall17wmLHEGS-00077',
+                                                          'EXO-RunIIFall17wmLHEGS-00078',
+                                                          'EXO-RunIIFall17wmLHEGS-00079',
+                                                          'EXO-RunIIFall17wmLHEGS-00080'], ['jose.ruiz@cern.ch'])
 
 ListOfRequests=[]
 ListOfRequests.append(MonoZ)
