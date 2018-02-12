@@ -36,5 +36,6 @@ def McMStatus(ListOfReq):
         ReqDictionary=mcm.getA('requests', i, method='get')
         if len(ReqDictionary)==0: continue
         FullStatus=FullStatus+ReqDictionary['status']+' '
+    print FullStatus
     return FullStatus
     
