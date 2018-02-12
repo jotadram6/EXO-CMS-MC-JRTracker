@@ -14,6 +14,17 @@ def StringOfStatus(ListOfReq):
                 FullStatus=FullStatus+CurrentStatus+' '
     return FullStatus
 
+def PercentageProd(ListOfReq):
+    StringToStrip=StringOfStatus(ListOfReq)
+    if len(StringToStrip)<=1: return ""
+    FullListStatus=StringToStrip.split(" ")
+    FullListStatus=list(filter(lambda a: a != '', FullListStatus))
+    NotRepeatedStatus=list(set(FullListStatus))
+    PercentageStatus=""
+    for i in xrange(len(NotRepeatedStatus)):
+        PercentageStatus=PercentageStatus+NotRepeatedStatus[i]+" %.1f %% " % (100*len([j for j in FullListStatus if j==NotRepeatedStatus[i]])/len(FullListStatus))
+    return PercentageStatus
+
 import sys
 sys.path.append('/afs/cern.ch/cms/PPD/PdmV/tools/McM/')
 from rest import *
