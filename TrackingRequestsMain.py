@@ -1,7 +1,7 @@
 #!/bin/python
 
 DEBUG = False
-DoNotify = True
+DoNotify = False
 
 import GetPassword #Safely parsing the username and password
 import smtplib #Library to send email notifications
@@ -57,7 +57,7 @@ for i in ListOfRequests:
     #FetchedProdStauts='PROD: '+StringOfStatus(i.PrepIds) #Full string with status
     FetchedProdStauts='PROD: '+PercentageProd(i.PrepIds)
     FillingTable=FillingTable+TemplateBlock.replace('REQUEST',i.Name).replace('CONTACT',i.Contact).replace('ANALYZER',i.Analyzer).replace('REQI',i.PrepIds[0]).replace('REQF',i.PrepIds[-1]).replace('STATUS',FetchedMcMStatus+' and '+FetchedProdStauts)
-    msg = 'From: jruizalv@cern.ch\nSubject: Status of your EXO MC requests\n\nDear EXO analyzer,\n\nYour MC EXO requests from '+i.PrepIds[0]+' to '+i.PrepIds[-1]+' are in status:\n'+FetchedMcMStatus+'\n\n'+FetchedProdStauts+'\n\nPlease check:\nhttp://jruizalv.web.cern.ch/jruizalv/'+SiteName+'/ \nfor more details\n\nBest regards,\nMC&I group'
+    msg = "From: jruizalv@cern.ch\nSubject: Status of your EXO MC requests\n\nDear EXO analyzer,\n\nYour MC EXO requests from '+i.PrepIds[0]+' to '+i.PrepIds[-1]+' are in status:\n'+FetchedMcMStatus+'\n\n'+FetchedProdStauts+'\n\nPlease check:\nhttp://jruizalv.web.cern.ch/jruizalv/'+SiteName+'/ \nfor more details. Moreover, if you don't see any status for your requests please take a look at the McM link.\n\nBest regards,\nMC&I group"
     if DoNotify: server.sendmail(User+"@cern.ch", i.Emails, msg)
     if DEBUG:
         print "A notification email to", i.Emails, "has been sent"
