@@ -3,6 +3,17 @@
 #    ('MonoZ validation',['Andreas Albert',['jose.ruiz@cern.ch']],['Jose Ruiz','jose.ruiz@cern.ch']): ['EXO-RunIISummer15wmLHEGS-05249','EXO-RunIISummer15wmLHEGS-05250']
 #}
 
+def ListOfRequests(Initial,Final):
+    Base=Initial.split("-")[0]+"-"+Initial.split("-")[1]+"-"
+    Inum=int(Initial.split("-")[-1])
+    Fnum=int(Final.split("-")[-1])
+    FinalList=[]
+    for i in xrange(Inum,Fnum+1):
+        HowManyDigits=len(str(i))
+        ZerosString='00000'
+        FinalList.append(Base+ZerosString[:len(ZerosString)-HowManyDigits]+str(i))
+    return FinalList
+
 class EXORequest:
     def __init__(self, RequestName, Analyzer, Contact, ListOfPrepids, ListOfEmails):
         self.Name = RequestName
@@ -142,9 +153,25 @@ ADDMonophotonDMSimp=EXORequest('Monophoton DMsimp','Yutaro Iiyama','Jose Ruiz',[
                                                                                 'EXO-RunIISummer15wmLHEGS-05914',
                                                                                 'EXO-RunIISummer15wmLHEGS-05915'], ['Yutaro.Iiyama@cern.ch','cms-exo-mcrequests@cern.ch'])
 
+GGSherpa=EXORequest('Sherpa GG','Andrew Buccilli','Jose Ruiz',ListOfRequests('EXO-RunIIFall17GS-00163','EXO-RunIIFall17GS-00169'), ['andrew.buccilli@cern.ch','cms-exo-mcrequests@cern.ch'])
+
+GGJetsSherpa=EXORequest('Sherpa GG Jets','Andrew Buccilli','Jose Ruiz',ListOfRequests('EXO-RunIIFall17GS-00170','EXO-RunIIFall17GS-00177'), ['andrew.buccilli@cern.ch','cms-exo-mcrequests@cern.ch'])
+
+DisplacedSUSY=EXORequest('Displaced SUSY','Juliette Alimena','Jose Ruiz',ListOfRequests('EXO-RunIIFall17GS-00041','EXO-RunIIFall17GS-00100'), ['juliette.alimena@cern.ch','cms-exo-mcrequests@cern.ch'])
+
+HSCP1=EXORequest('HSCP 1','Juliette Alimena','Jose Ruiz',ListOfRequests('EXO-RunIIFall17GS-00426','EXO-RunIIFall17GS-00476'), ['juliette.alimena@cern.ch','cms-exo-mcrequests@cern.ch'])
+
+HSCP2=EXORequest('HSCP 2','Juliette Alimena','Jose Ruiz',ListOfRequests('EXO-RunIIFall17GS-00477','EXO-RunIIFall17GS-00529'), ['juliette.alimena@cern.ch','cms-exo-mcrequests@cern.ch'])
+
 ListOfRequests=[]
 ListOfRequests.append(MonoZ)
 ListOfRequests.append(DarkHiggs2016)
 ListOfRequests.append(DiJet)
 ListOfRequests.append(ADDMonophoton)
 ListOfRequests.append(ADDMonophotonDMSimp)
+ListOfRequests.append(GGSherpa)
+ListOfRequests.append(GGJetsSherpa)
+ListOfRequests.append(DisplacedSUSY)
+ListOfRequests.append(HSCP1)
+ListOfRequests.append(HSCP2)
+#ListOfRequests.append()
