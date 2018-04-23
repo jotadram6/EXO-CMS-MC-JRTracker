@@ -163,6 +163,46 @@ HSCP1=EXORequest('HSCP 1','Juliette Alimena','Jose Ruiz',ListOfRequests('EXO-Run
 
 HSCP2=EXORequest('HSCP 2','Juliette Alimena','Jose Ruiz',ListOfRequests('EXO-RunIIFall17GS-00477','EXO-RunIIFall17GS-00529'), ['juliette.alimena@cern.ch','cms-exo-mcrequests@cern.ch'])
 
+Trijet1HP=EXORequest('Trijet 2017 High Priority 1','Francesco Santanastasio','Youngdo Oh',ListOfRequests('EXO-RunIIFall17GS-00037','EXO-RunIIFall17GS-00040'), ['Francesco.Santanastasio@cern.ch','cms-exo-mcrequests@cern.ch'])
+
+Trijet2HP=EXORequest('Trijet 2017 High Priority 2','Francesco Santanastasio','Youngdo Oh',ListOfRequests('EXO-RunIIFall17wmLHEGS-00105','EXO-RunIIFall17wmLHEGS-00108'), ['Francesco.Santanastasio@cern.ch','cms-exo-mcrequests@cern.ch'])
+
+Trijet1=EXORequest('Trijet 2017 1','Francesco Santanastasio','Youngdo Oh',ListOfRequests('EXO-RunIIFall17GS-00101','EXO-RunIIFall17GS-00162'), ['Francesco.Santanastasio@cern.ch','cms-exo-mcrequests@cern.ch'])
+
+Trijet2=EXORequest('Trijet 2017 2','Francesco Santanastasio','Youngdo Oh',ListOfRequests('EXO-RunIIFall17wmLHEGS-00109','EXO-RunIIFall17wmLHEGS-00170'), ['Francesco.Santanastasio@cern.ch','cms-exo-mcrequests@cern.ch'])
+
+Trijet3=EXORequest('Trijet 2016 1','Francesco Santanastasio','Youngdo Oh',ListOfRequests('EXO-RunIISummer15GS-11102','EXO-RunIISummer15GS-11167'), ['Francesco.Santanastasio@cern.ch','cms-exo-mcrequests@cern.ch'])
+
+Trijet4=EXORequest('Trijet 2016 2','Francesco Santanastasio','Youngdo Oh',ListOfRequests('EXO-RunIISummer15wmLHEGS-05954','EXO-RunIISummer15wmLHEGS-06019'), ['Francesco.Santanastasio@cern.ch','cms-exo-mcrequests@cern.ch'])
+
+CI1=EXORequest('Contact Interactions 1','Prakash Thapa','Youngdo Oh',ListOfRequests('EXO-RunIIFall17GS-00178','EXO-RunIIFall17GS-00260'), ['prakash.thapa@wayne.edu','cms-exo-mcrequests@cern.ch'])
+
+CI2=EXORequest('Contact Interactions 2','Prakash Thapa','Youngdo Oh',ListOfRequests('EXO-RunIIFall17GS-00261','EXO-RunIIFall17GS-00343'), ['prakash.thapa@wayne.edu','cms-exo-mcrequests@cern.ch'])
+
+CI3=EXORequest('Contact Interactions 3','Prakash Thapa','Youngdo Oh',ListOfRequests('EXO-RunIIFall17GS-00344','EXO-RunIIFall17GS-00425'), ['prakash.thapa@wayne.edu','cms-exo-mcrequests@cern.ch'])
+
+MonoLQ=EXORequest('Mono LQ','Abdollah Mohammadi','Youngdo Oh',ListOfRequests('EXO-RunIIFall17wmLHEGS-00171','EXO-RunIIFall17wmLHEGS-00235'), ['Abdollah.Mohammadi@cern.ch','cms-exo-mcrequests@cern.ch'])
+
+HVDS=EXORequest('HVDS', 'Kevin McDermott','Shubhanshu Chauhan',ListOfRequests('EXO-RunIISummer15GS-10956','EXO-RunIISummer15GS-11039'),['kpm82@cornell.edu','cms-exo-mcrequests@cern.ch'] )
+
+HNS=EXORequest('Heavy Neutrino S channel','Sihyun Jeon','Shubhanshu Chauhan',ListOfRequests('EXO-RunIISummer15wmLHEGS-05598','EXO-RunIISummer15wmLHEGS-05781'),['si.hyun.jeon@cern.ch','cms-exo-mcrequests@cern.ch'])
+
+HNT=EXORequest('Heavy Neutrino T channel','Sihyun Jeon','Shubhanshu Chauhan',ListOfRequests('EXO-RunIISummer15wmLHEGS-05496','EXO-RunIISummer15wmLHEGS-05597'),['si.hyun.jeon@cern.ch','cms-exo-mcrequests@cern.ch'])
+
+VLL=EXORequest('VectorLikeleptons','Shubhanshu Chauhan','Shubhanshu Chauhan',ListOfRequests('EXO-RunIIFall17wmLHEGS-00082','EXO-RunIIFall17wmLHEGS-00100'),['shubhanshu.chauhan@cern.ch','cms-exo-mcrequests@cern.ch'])
+
+WTauNu=EXORequest('WtoTauNu','Central','Shubhanshu Chauhan',ListOfRequests('EXO-RunIIFall17GS-00016','EXO-RunIIFall17GS-00024'),['cms-exo-mcrequests@cern.ch'])
+
+STDM=EXORequest('SingleTopDM','Juliette Alimena','Shubhanshu Chauhan',ListOfRequests('EXO-PhaseIITDRFall17wmLHEGS-00001','EXO-PhaseIITDRFall17wmLHEGS-00006'),['juliette.alimena@cern.ch','cms-exo-mcrequests@cern.ch'])
+
+DarkSUSY=EXORequest('Dark SUSY','Henning Keller','Jose Ruiz',ListOfRequests('EXO-PhaseIISummer17pLHE-00005','EXO-PhaseIISummer17pLHE-00034'),['henning.keller@cern.ch','juliette.alimena@cern.ch','cms-exo-mcrequests@cern.ch'])
+
+ZprimeToZto4mu=EXORequest('ZprimeToZto4mu','Muhammad Ahmad','Bora Isildak',ListOfRequests('EXO-RunIISummer15wmLHEGS-06020','EXO-RunIISummer15wmLHEGS-06038'), ['m.ahmad@cern.ch','cms-exo-mcrequests@cern.ch'])
+
+ttbarDMJets=EXORequest('ttbarDMJets','Kelly Beernaert ','Bora Isildak',ListOfRequests('EXO-PhaseIISummer17wmLHEGENOnly-00001','EXO-PhaseIISummer17wmLHEGENOnly-00014'), ['ksbeerna@cern.ch','cms-exo-mcrequests@cern.ch'])
+
+#################################################################################
+
 ListOfRequests=[]
 ListOfRequests.append(MonoZ)
 ListOfRequests.append(DarkHiggs2016)
@@ -174,4 +214,23 @@ ListOfRequests.append(GGJetsSherpa)
 ListOfRequests.append(DisplacedSUSY)
 ListOfRequests.append(HSCP1)
 ListOfRequests.append(HSCP2)
-#ListOfRequests.append()
+ListOfRequests.append(Trijet1HP)
+ListOfRequests.append(Trijet2HP)
+ListOfRequests.append(Trijet1)
+ListOfRequests.append(Trijet2)
+ListOfRequests.append(Trijet3)
+ListOfRequests.append(Trijet4)
+ListOfRequests.append(CI1)
+ListOfRequests.append(CI2)
+ListOfRequests.append(CI3)
+ListOfRequests.append(MonoLQ)
+ListOfRequests.append(HVDS)
+ListOfRequests.append(HNS)
+ListOfRequests.append(HNT)
+ListOfRequests.append(VLL)
+ListOfRequests.append(WTauNu)
+ListOfRequests.append(STDM)
+ListOfRequests.append(DarkSUSY)
+ListOfRequests.append(ZprimeToZto4mu)
+ListOfRequests.append(ttbarDMJets)
+#ListOfRequests.append
