@@ -26,7 +26,7 @@ if DEBUG:
 
 #Setting working directory of the site
 BaseDirectory='/afs/cern.ch/user/j/jruizalv/www/'
-SiteName='JoseTestingEXO'
+SiteName='EXO_MC_Monitoring'
 
 IsDirectoryThere=cmd.getoutput("ls "+BaseDirectory)
 if SiteName in IsDirectoryThere:

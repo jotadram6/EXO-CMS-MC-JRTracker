@@ -31,9 +31,10 @@ from rest import *
 
 def McMStatus(ListOfReq):
     FullStatus=''
-    mcm = restful(dev=True)
+    #mcm = restful(dev=True)
+    mcm = McM(dev=True)
     for i in ListOfReq:
-        ReqDictionary=mcm.getA('requests', i, method='get')
+        ReqDictionary=mcm.get('requests', i, method='get')
         if len(ReqDictionary)==0: continue
         FullStatus=FullStatus+ReqDictionary['status']+' '
     return FullStatus
