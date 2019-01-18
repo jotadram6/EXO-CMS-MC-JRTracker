@@ -32,7 +32,7 @@ from rest import *
 def McMStatus(ListOfReq):
     FullStatus=''
     #mcm = restful(dev=True)
-    mcm = McM(dev=True)
+    mcm = McM(dev=False)
     for i in ListOfReq:
         ReqDictionary=mcm.get('requests', i, method='get')
         if len(ReqDictionary)==0: continue
