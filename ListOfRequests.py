@@ -24,7 +24,7 @@ class EXORequest:
         self.Notification = Notify
 
 #List of requests (Name, Requestor, Contact, ListOfrequests, list of emails to notify)
-#MonoZ=EXORequest('MonoZ validation','Andreas Albert','Jose Ruiz',['EXO-RunIISummer15wmLHEGS-05249','EXO-RunIISummer15wmLHEGS-05250'], ['andreas.albert@cern.ch'], False)
+MonoZ=EXORequest('MonoZ validation','Andreas Albert','Jose Ruiz',['EXO-RunIISummer15wmLHEGS-05249','EXO-RunIISummer15wmLHEGS-05250'], ['andreas.albert@cern.ch'], False)
 Req01=EXORequest('Displaced stop 2016','Juliette Alimena','Young Do',ListOfRequests('EXO-RunIISummer15GS-11311','EXO-RunIISummer15GS-11378'), [''], False)
 Req02=EXORequest('Displaced stop 2017','Juliette Alimena','Young Do',ListOfRequests('EXO-RunIIFall17GS-01060','EXO-RunIIFall17GS-01127'), [''], False)
 Req03=EXORequest('Displace sbottom 2016','Juliette Alimena','Young Do',ListOfRequests('EXO-RunIISummer15GS-11379','EXO-RunIISummer15GS-11402'), [''], False)
@@ -107,7 +107,7 @@ ListOfRequests=[]
 ListOfRequests.append(Req01)
 ListOfRequests.append(Req02)
 ListOfRequests.append(Req03)
-ListOfRequests.append(Req04)
+"""ListOfRequests.append(Req04)
 ListOfRequests.append(Req05)
 ListOfRequests.append(Req06)
 ListOfRequests.append(Req07)
@@ -161,5 +161,5 @@ ListOfRequests.append(Req54)
 ListOfRequests.append(Req55)
 ListOfRequests.append(Req56)
 ListOfRequests.append(Req57)
-ListOfRequests.append(Req58)
+ListOfRequests.append(Req58)"""
 #ListOfRequests.append(Req)
