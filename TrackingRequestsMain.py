@@ -47,17 +47,18 @@ from ListOfRequests import *
 #Getting functions to fetch status
 from GettingStatus import *
 
-TemplateBlockDONE='  <tr>\n    <td>REQUEST</td>\n    <td style="color:#298A08;">STATUS</td>\n    <td>CONTACT</td>\n    <td>ANALYZER</td>\n    <td> <a href="https://cms-pdmv.cern.ch/mcm/requests?range=REQI,REQF">McM Link</a> </td>\n  </tr>\n'
+TemplateBlockDONE='  <tr>\n    <td>REQUEST</td>\n    <td>CAM</td>\n    <td style="color:#298A08;">STATUS</td>\n    <td>CONTACT</td>\n    <td>ANALYZER</td>\n    <td> <a href="https://cms-pdmv.cern.ch/mcm/requests?range=REQI,REQF">McM Link</a> </td>\n  </tr>\n'
 
-TemplateBlockHALFDONE='  <tr>\n    <td>REQUEST</td>\n    <td style="color:#FF8000;">STATUS</td>\n    <td>CONTACT</td>\n    <td>ANALYZER</td>\n    <td> <a href="https://cms-pdmv.cern.ch/mcm/requests?range=REQI,REQF">McM Link</a> </td>\n  </tr>\n'
+TemplateBlockHALFDONE='  <tr>\n    <td>REQUEST</td>\n    <td>CAM</td>\n    <td style="color:#FF8000;">STATUS</td>\n    <td>CONTACT</td>\n    <td>ANALYZER</td>\n    <td> <a href="https://cms-pdmv.cern.ch/mcm/requests?range=REQI,REQF">McM Link</a> </td>\n  </tr>\n'
 
-TemplateBlockSTUCK='  <tr>\n    <td>REQUEST</td>\n    <td style="color:Tomato;">STATUS</td>\n    <td>CONTACT</td>\n    <td>ANALYZER</td>\n    <td> <a href="https://cms-pdmv.cern.ch/mcm/requests?range=REQI,REQF">McM Link</a> </td>\n  </tr>\n'
+TemplateBlockSTUCK='  <tr>\n    <td>REQUEST</td>\n    <td>CAM</td>\n    <td style="color:Tomato;">STATUS</td>\n    <td>CONTACT</td>\n    <td>ANALYZER</td>\n    <td> <a href="https://cms-pdmv.cern.ch/mcm/requests?range=REQI,REQF">McM Link</a> </td>\n  </tr>\n'
 
 FillingTable=''
 
 for i in ListOfRequests:
     #FetchedMcMStatus='MCM: '+McMStatus(i.PrepIds) #Full string with status
     FetchedMcMStatus='MCM: '+PercentageProdMcM(i.PrepIds)
+    FetchedMcMCampaigns=McMCampaignSummary(i.PrepIds)
     #StringDONEinMCM=FetchedMcMStatus.split("done")[-1].replace('%','').replace(" ",'')
     StatusList=FetchedMcMStatus.replace("MCM:",'').split("%")
     StringDONEinMCM=''
@@ -68,13 +69,14 @@ for i in ListOfRequests:
     #FetchedProdStauts='PROD: '+StringOfStatus(i.PrepIds) #Full string with status
     FetchedProdStauts='PROD: '+PercentageProd(i.PrepIds)
     if PercetageDONE>=90.0:
-        FillingTable=FillingTable+TemplateBlockDONE.replace('REQUEST',i.Name).replace('CONTACT',i.Contact).replace('ANALYZER',i.Analyzer).replace('REQI',i.PrepIds[0]).replace('REQF',i.PrepIds[-1]).replace('STATUS',FetchedMcMStatus+' and '+FetchedProdStauts)
+        FillingTable=FillingTable+TemplateBlockDONE.replace('REQUEST',i.Name).replace('CONTACT',i.Contact).replace('ANALYZER',i.Analyzer).replace('REQI',i.PrepIds[0]).replace('REQF',i.PrepIds[-1]).replace('STATUS',FetchedMcMStatus+' and '+FetchedProdStauts).replace('CAM',FetchedMcMCampaigns)
     elif PercetageDONE>=50.0 and PercetageDONE<90.0:
-        FillingTable=FillingTable+TemplateBlockHALFDONE.replace('REQUEST',i.Name).replace('CONTACT',i.Contact).replace('ANALYZER',i.Analyzer).replace('REQI',i.PrepIds[0]).replace('REQF',i.PrepIds[-1]).replace('STATUS',FetchedMcMStatus+' and '+FetchedProdStauts)
+        FillingTable=FillingTable+TemplateBlockHALFDONE.replace('REQUEST',i.Name).replace('CONTACT',i.Contact).replace('ANALYZER',i.Analyzer).replace('REQI',i.PrepIds[0]).replace('REQF',i.PrepIds[-1]).replace('STATUS',FetchedMcMStatus+' and '+FetchedProdStauts).replace('CAM',FetchedMcMCampaigns)
     else:
-        FillingTable=FillingTable+TemplateBlockSTUCK.replace('REQUEST',i.Name).replace('CONTACT',i.Contact).replace('ANALYZER',i.Analyzer).replace('REQI',i.PrepIds[0]).replace('REQF',i.PrepIds[-1]).replace('STATUS',FetchedMcMStatus+' and '+FetchedProdStauts)
+        FillingTable=FillingTable+TemplateBlockSTUCK.replace('REQUEST',i.Name).replace('CONTACT',i.Contact).replace('ANALYZER',i.Analyzer).replace('REQI',i.PrepIds[0]).replace('REQF',i.PrepIds[-1]).replace('STATUS',FetchedMcMStatus+' and '+FetchedProdStauts).replace('CAM',FetchedMcMCampaigns)
     msg = 'From: jruizalv@cern.ch\nSubject: Status of your EXO MC requests\n\nDear EXO analyzer,\n\nYour MC EXO requests from '+i.PrepIds[0]+' to '+i.PrepIds[-1]+' are in status:\n'+FetchedMcMStatus+'\n\n'+FetchedProdStauts+'\n\nPlease check:\nhttp://jruizalv.web.cern.ch/jruizalv/'+SiteName+'/ \nfor more details. Moreover, if you do not see any status for your requests please take a look at the McM link.\n\nBest regards,\nMC&I group'
-    FinalEmails=i.Emails.append('cms-exo-mcrequests@cern.ch')
+    #FinalEmails=i.Emails.append('cms-exo-mcrequests@cern.ch')
+    FinalEmails=i.Emails
     if DoNotify and i.Notification: server.sendmail(User+"@cern.ch", FinalEmails, msg)
     if DEBUG:
         print "A notification email to", i.Emails, "has been sent"

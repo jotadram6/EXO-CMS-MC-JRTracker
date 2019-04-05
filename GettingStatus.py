@@ -35,9 +35,21 @@ def McMStatus(ListOfReq):
     mcm = McM(dev=False)
     for i in ListOfReq:
         ReqDictionary=mcm.get('requests', i, method='get')
+        #print "---------------------------------------------------------------------------------------------------------------------------------------"
+        #print ReqDictionary.keys()
+        #print "---------------------------------------------------------------------------------------------------------------------------------------"
         if len(ReqDictionary)==0: continue
         FullStatus=FullStatus+ReqDictionary['status']+' '
     return FullStatus
+
+def McMCampaignsFullString(ListOfReq):
+    Campaign=''
+    mcm = McM(dev=False)
+    for i in ListOfReq:
+        ReqDictionary=mcm.get('requests', i, method='get')
+        if len(ReqDictionary)==0: continue
+        Campaign=Campaign+ReqDictionary['member_of_campaign']+' '
+    return Campaign
     
 def PercentageProdMcM(ListOfReq):
     StringToStrip=McMStatus(ListOfReq)
@@ -53,3 +65,14 @@ def PercentageProdMcM(ListOfReq):
     for i in xrange(len(NotRepeatedStatus)):
         PercentageStatus=PercentageStatus+NotRepeatedStatus[i]+" %.1f %% " % (100*len([j for j in FullListStatus if j==NotRepeatedStatus[i]])/len(FullListStatus))
     return PercentageStatus
+
+def McMCampaignSummary(ListOfReq):
+    StringToStrip=McMCampaignsFullString(ListOfReq)
+    if len(StringToStrip)<=1: return ""
+    FullListCampaign=StringToStrip.split(" ")
+    FullListCampaign=list(filter(lambda a: a != '', FullListCampaign))
+    NotRepeatedCampaign=list(set(FullListCampaign))
+    Campaigns=""
+    for i in xrange(len(NotRepeatedCampaign)):
+        Campaigns=Campaigns+NotRepeatedCampaign[i]
+    return Campaigns
