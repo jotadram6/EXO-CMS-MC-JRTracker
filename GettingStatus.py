@@ -28,19 +28,23 @@ def PercentageProd(ListOfReq):
 import sys
 sys.path.append('/afs/cern.ch/cms/PPD/PdmV/tools/McM/')
 from rest import *
+import pandas as pd
 
-def McMStatus(ListOfReq):
+def McMStatus(ListOfReq,df):
     FullStatus=''
     #mcm = restful(dev=True)
     mcm = McM(dev=False)
+    #df=pd.DataFrame()
     for i in ListOfReq:
         ReqDictionary=mcm.get('requests', i, method='get')
         #print "---------------------------------------------------------------------------------------------------------------------------------------"
         #print ReqDictionary.keys()
         #print "---------------------------------------------------------------------------------------------------------------------------------------"
+        DFDictionary={'_id':ReqDictionary['_id'],'status':ReqDictionary['status'],'completed_events':ReqDictionary['completed_events']}
+        df=df.append(pd.Series(DFDictionary),ignore_index=True)
         if len(ReqDictionary)==0: continue
         FullStatus=FullStatus+ReqDictionary['status']+' '
-    return FullStatus
+    return FullStatus, df
 
 def McMCampaignsFullString(ListOfReq):
     Campaign=''
@@ -51,8 +55,8 @@ def McMCampaignsFullString(ListOfReq):
         Campaign=Campaign+ReqDictionary['member_of_campaign']+' '
     return Campaign
     
-def PercentageProdMcM(ListOfReq):
-    StringToStrip=McMStatus(ListOfReq)
+def PercentageProdMcM(ListOfReq,df):
+    StringToStrip,df=McMStatus(ListOfReq,df)
     if len(StringToStrip)<=1: return ""
     FullListStatus=StringToStrip.split(" ")
     FullListStatus=list(filter(lambda a: a != '', FullListStatus))
@@ -64,7 +68,7 @@ def PercentageProdMcM(ListOfReq):
     PercentageStatus=""
     for i in xrange(len(NotRepeatedStatus)):
         PercentageStatus=PercentageStatus+NotRepeatedStatus[i]+" %.1f %% " % (100*len([j for j in FullListStatus if j==NotRepeatedStatus[i]])/len(FullListStatus))
-    return PercentageStatus
+    return PercentageStatus,df
 
 def McMCampaignSummary(ListOfReq):
     StringToStrip=McMCampaignsFullString(ListOfReq)

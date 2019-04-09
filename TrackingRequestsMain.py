@@ -2,11 +2,15 @@
 
 DEBUG = False
 DoNotify = False
+TESTING = True
+
+if TESTING: DoNotify = False
 
 import GetPassword #Safely parsing the username and password
 import smtplib #Library to send email notifications
 import commands as cmd
 import time
+import pandas as pd
 
 if DoNotify: 
     #Getting username and password to send email notifications
@@ -26,7 +30,11 @@ if DEBUG:
 
 #Setting working directory of the site
 BaseDirectory='/afs/cern.ch/user/j/jruizalv/www/'
-SiteName='EXO_MC_Monitoring'
+if TESTING: 
+    SiteName='Testing'
+else:
+    SiteName='EXO_MC_Monitoring'
+
 
 IsDirectoryThere=cmd.getoutput("ls "+BaseDirectory)
 if SiteName in IsDirectoryThere:
@@ -41,6 +49,9 @@ StringITime=str(ITime.tm_year)+'-'+str(ITime.tm_mon)+'-'+str(ITime.tm_mday)+' at
 
 cmd.getoutput('sed -i -- "s/DATE/'+StringITime+'/g" '+BaseDirectory+SiteName+'/index.html')
 
+#Getting data structure
+from DataStructure import *
+
 #Getting DB of requests to be checked
 from ListOfRequests import *
 
@@ -54,10 +65,16 @@ TemplateBlockHALFDONE='  <tr>\n    <td>REQUEST</td>\n    <td>CAM</td>\n    <td s
 TemplateBlockSTUCK='  <tr>\n    <td>REQUEST</td>\n    <td>CAM</td>\n    <td style="color:Tomato;">STATUS</td>\n    <td>CONTACT</td>\n    <td>ANALYZER</td>\n    <td> <a href="https://cms-pdmv.cern.ch/mcm/requests?range=REQI,REQF">McM Link</a> </td>\n  </tr>\n'
 
 FillingTable=''
+df=pd.DataFrame()
+
+kcounter=0
 
 for i in ListOfRequests:
+    if TESTING and kcounter>5: continue
     #FetchedMcMStatus='MCM: '+McMStatus(i.PrepIds) #Full string with status
-    FetchedMcMStatus='MCM: '+PercentageProdMcM(i.PrepIds)
+    #FetchedMcMStatus='MCM: '+PercentageProdMcM(i.PrepIds)
+    FetchedMcMStatus,df=PercentageProdMcM(i.PrepIds,df)
+    FetchedMcMStatus='MCM: '+FetchedMcMStatus
     FetchedMcMCampaigns=McMCampaignSummary(i.PrepIds)
     #StringDONEinMCM=FetchedMcMStatus.split("done")[-1].replace('%','').replace(" ",'')
     StatusList=FetchedMcMStatus.replace("MCM:",'').split("%")
@@ -81,6 +98,7 @@ for i in ListOfRequests:
     if DEBUG:
         print "A notification email to", i.Emails, "has been sent"
         print FillingTable
+    kcounter+=1
 
 #cmd.getoutput('sed -i -- "s#FILLTABLEHERE#'+FillingTable+'#g" '+BaseDirectory+SiteName+'/index.html')
 index_html=open(BaseDirectory+SiteName+'/index.html','r')
@@ -90,3 +108,5 @@ html_lines[html_lines.index('FILLTABLEHERE\n')]=FillingTable
 index_html=open(BaseDirectory+SiteName+'/index.html','w')
 index_html.writelines(html_lines)
 index_html.close()
+
+df.to_csv(StringITime.replace("-","").replace(" ","")+".csv")
