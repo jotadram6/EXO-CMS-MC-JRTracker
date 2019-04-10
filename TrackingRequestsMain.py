@@ -3,6 +3,7 @@
 DEBUG = False
 DoNotify = False
 TESTING = True
+FromVM = True
 
 if TESTING: DoNotify = False
 
@@ -29,12 +30,16 @@ if DEBUG:
     print "Go check your email! A hello world email has been sent :)"
 
 #Setting working directory of the site
-BaseDirectory='/afs/cern.ch/user/j/jruizalv/www/'
+if FromVM:
+    BaseDirectory='/home/MonitoringEXOTools/'
+else:
+    BaseDirectory='/afs/cern.ch/user/j/jruizalv/www/'
 if TESTING: 
     SiteName='Testing'
 else:
     SiteName='EXO_MC_Monitoring'
 
+if FromVM: cmd.getoutput("mkdir -p "+BaseDirectory+SiteName)
 
 IsDirectoryThere=cmd.getoutput("ls "+BaseDirectory)
 if SiteName in IsDirectoryThere:
