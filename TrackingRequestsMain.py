@@ -2,7 +2,7 @@
 
 DEBUG = False
 DoNotify = False
-TESTING = True
+TESTING = False
 FromVM = True
 
 if TESTING: DoNotify = False
@@ -31,7 +31,7 @@ if DEBUG:
 
 #Setting working directory of the site
 if FromVM:
-    BaseDirectory='/home/MonitoringEXOTools/'
+    BaseDirectory='/home/MonitoringEXOTools/HTML/'
 else:
     BaseDirectory='/afs/cern.ch/user/j/jruizalv/www/'
 if TESTING: 
@@ -39,13 +39,13 @@ if TESTING:
 else:
     SiteName='EXO_MC_Monitoring'
 
-if FromVM: cmd.getoutput("mkdir -p "+BaseDirectory+SiteName)
+#if FromVM: cmd.getoutput("mkdir -p "+BaseDirectory+SiteName)
 
 IsDirectoryThere=cmd.getoutput("ls "+BaseDirectory)
 if SiteName in IsDirectoryThere:
-    cmd.getoutput("cp -r PageSources/* "+BaseDirectory+SiteName+"/")
+    cmd.getoutput("cp -r /home/MonitoringEXOTools/EXO-CMS-MC-JRTracker/PageSources/* "+BaseDirectory+SiteName+"/")
 else:
-    cmd.getoutput("cp -r PageSources "+BaseDirectory+SiteName)
+    cmd.getoutput("cp -r /home/MonitoringEXOTools/EXO-CMS-MC-JRTracker/PageSources "+BaseDirectory+SiteName)
 
 print "Site created on: "+BaseDirectory+SiteName
 
@@ -75,7 +75,7 @@ df=pd.DataFrame()
 kcounter=0
 
 for i in ListOfRequests:
-    if TESTING and kcounter>5: continue
+    if TESTING and kcounter>3: continue
     #FetchedMcMStatus='MCM: '+McMStatus(i.PrepIds) #Full string with status
     #FetchedMcMStatus='MCM: '+PercentageProdMcM(i.PrepIds)
     FetchedMcMStatus,df=PercentageProdMcM(i.PrepIds,df)
@@ -103,7 +103,7 @@ for i in ListOfRequests:
     if DEBUG:
         print "A notification email to", i.Emails, "has been sent"
         print FillingTable
-    kcounter+=1
+    kcounter=kcounter+1
 
 #cmd.getoutput('sed -i -- "s#FILLTABLEHERE#'+FillingTable+'#g" '+BaseDirectory+SiteName+'/index.html')
 index_html=open(BaseDirectory+SiteName+'/index.html','r')
