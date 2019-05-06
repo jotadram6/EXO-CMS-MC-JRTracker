@@ -17,6 +17,7 @@ if DoNotify:
     #Getting username and password to send email notifications
     LoginArgs=GetPassword.main(True)
     User=LoginArgs.username
+    if User=='root': User = 'jruizalv'
     Password=LoginArgs.password.value
     #Setting STMP
     server = smtplib.SMTP('smtp.cern.ch', 587)
