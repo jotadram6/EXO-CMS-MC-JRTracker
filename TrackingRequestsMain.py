@@ -1,7 +1,7 @@
 #!/bin/python
 
 DEBUG = False
-DoNotify = False
+DoNotify = True
 TESTING = False
 FromVM = True
 
@@ -12,17 +12,6 @@ import smtplib #Library to send email notifications
 import commands as cmd
 import time
 import pandas as pd
-
-if DoNotify: 
-    #Getting username and password to send email notifications
-    LoginArgs=GetPassword.main(True)
-    User=LoginArgs.username
-    if User=='root': User = 'jruizalv'
-    Password=LoginArgs.password.value
-    #Setting STMP
-    server = smtplib.SMTP('smtp.cern.ch', 587)
-    server.starttls()
-    server.login(User, Password)
 
 if DEBUG:
     tolist=[User+"@cern.ch"]
@@ -75,6 +64,9 @@ df=pd.DataFrame()
 
 kcounter=0
 
+MessagesToBeSent=[]
+EmailAddresses=[]
+
 for i in ListOfRequests:
     if TESTING and kcounter>3: continue
     #FetchedMcMStatus='MCM: '+McMStatus(i.PrepIds) #Full string with status
@@ -100,11 +92,27 @@ for i in ListOfRequests:
     msg = 'From: jruizalv@cern.ch\nSubject: Status of your EXO MC requests\n\nDear EXO analyzer,\n\nYour MC EXO requests from '+i.PrepIds[0]+' to '+i.PrepIds[-1]+' are in status:\n'+FetchedMcMStatus+'\n\n'+FetchedProdStauts+'\n\nPlease check:\nhttp://jruizalv.web.cern.ch/jruizalv/'+SiteName+'/ \nfor more details. Moreover, if you do not see any status for your requests please take a look at the McM link.\n\nBest regards,\nMC&I group'
     #FinalEmails=i.Emails.append('cms-exo-mcrequests@cern.ch')
     FinalEmails=i.Emails
-    if DoNotify and i.Notification: server.sendmail(User+"@cern.ch", FinalEmails, msg)
+    MessagesToBeSent.append(msg)
+    EmailAddresses.append(FinalEmails)
     if DEBUG:
-        print "A notification email to", i.Emails, "has been sent"
         print FillingTable
     kcounter=kcounter+1
+
+if DoNotify: 
+    #Getting username and password to send email notifications
+    LoginArgs=GetPassword.main(True)
+    User=LoginArgs.username
+    if User=='root': User = 'jruizalv'
+    Password=LoginArgs.password.value
+    #Setting STMP
+    server = smtplib.SMTP('smtp.cern.ch', 587)
+    server.starttls()
+    server.login(User, Password)
+
+for i in range(len(ListOfRequests)):
+    if DoNotify and i.Notification: server.sendmail(User+"@cern.ch", EmailAddresses[i], MessagesToBeSent[i])
+    if DEBUG:
+        print "A notification email to", EmailAddresses[i], "has been sent"
 
 #cmd.getoutput('sed -i -- "s#FILLTABLEHERE#'+FillingTable+'#g" '+BaseDirectory+SiteName+'/index.html')
 index_html=open(BaseDirectory+SiteName+'/index.html','r')
