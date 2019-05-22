@@ -110,7 +110,7 @@ if DoNotify:
     server.login(User, Password)
 
 for i in range(len(ListOfRequests)):
-    if DoNotify and i.Notification: server.sendmail(User+"@cern.ch", EmailAddresses[i], MessagesToBeSent[i])
+    if DoNotify and ListOfRequests[i].Notification: server.sendmail(User+"@cern.ch", EmailAddresses[i], MessagesToBeSent[i])
     if DEBUG:
         print "A notification email to", EmailAddresses[i], "has been sent"
 
