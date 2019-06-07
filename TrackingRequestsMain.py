@@ -2,6 +2,7 @@
 
 DEBUG = False
 DoNotify = True
+AutomaticPass = True
 TESTING = False
 FromVM = True
 
@@ -12,6 +13,10 @@ import smtplib #Library to send email notifications
 import commands as cmd
 import time
 import pandas as pd
+
+if DoNotify: 
+    #Getting username and password to send email notifications
+    LoginArgs=GetPassword.main(True,AutomaticPass)
 
 if DEBUG:
     tolist=[User+"@cern.ch"]
@@ -68,6 +73,7 @@ MessagesToBeSent=[]
 EmailAddresses=[]
 
 for i in ListOfRequests:
+    print 'Processing: ', i.Name
     if TESTING and kcounter>3: continue
     #FetchedMcMStatus='MCM: '+McMStatus(i.PrepIds) #Full string with status
     #FetchedMcMStatus='MCM: '+PercentageProdMcM(i.PrepIds)
@@ -99,20 +105,23 @@ for i in ListOfRequests:
     kcounter=kcounter+1
 
 if DoNotify: 
-    #Getting username and password to send email notifications
-    LoginArgs=GetPassword.main(True)
-    User=LoginArgs.username
-    if User=='root': User = 'jruizalv'
-    Password=LoginArgs.password.value
-    #Setting STMP
-    server = smtplib.SMTP('smtp.cern.ch', 587)
-    server.starttls()
-    server.login(User, Password)
+    try:
+        #Getting username and password to send email notifications
+        #LoginArgs=GetPassword.main(True)
+        User=LoginArgs.username
+        if User=='root': User = 'jruizalv'
+        Password=LoginArgs.password.value
+        #Setting STMP
+        server = smtplib.SMTP('smtp.cern.ch', 587)
+        server.starttls()
+        server.login(User, Password)
 
-for i in range(len(ListOfRequests)):
-    if DoNotify and ListOfRequests[i].Notification: server.sendmail(User+"@cern.ch", EmailAddresses[i], MessagesToBeSent[i])
-    if DEBUG:
-        print "A notification email to", EmailAddresses[i], "has been sent"
+        for i in range(len(ListOfRequests)):
+            if DoNotify and ListOfRequests[i].Notification: server.sendmail(User+"@cern.ch", EmailAddresses[i], MessagesToBeSent[i])
+            if DEBUG:
+                print "A notification email to", EmailAddresses[i], "has been sent"
+    except:
+        print "Something went wrong when sending the notifications, continue without sending them"
 
 #cmd.getoutput('sed -i -- "s#FILLTABLEHERE#'+FillingTable+'#g" '+BaseDirectory+SiteName+'/index.html')
 index_html=open(BaseDirectory+SiteName+'/index.html','r')

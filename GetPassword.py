@@ -14,14 +14,32 @@ class Password:
     def __str__(self):
         return self.value
 
-def main(PrintBoolean):
-    parser = argparse.ArgumentParser(
-    formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-    parser.add_argument('-u', '--username', help='Specify username',
-        default=getpass.getuser())
-    parser.add_argument('-p', '--password', type=Password, help='Specify password',
-        default=Password.DEFAULT)
-    args = parser.parse_args()
+def main(PrintBoolean,FromFileBoolean):
+    if FromFileBoolean:
+        from cryptography.fernet import Fernet
+        filep = open('/home/MonitoringEXOTools/pass', 'rb')
+        password = filep.read()
+        filep.close()
+        filek = open('/home/MonitoringEXOTools/key.key', 'rb')
+        key = filek.read()
+        filek.close()
+        f = Fernet(key)
+        decrypted = f.decrypt(password)
+        parser = argparse.ArgumentParser(
+            formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+        parser.add_argument('-u', '--username', help='Specify username',
+                            default=getpass.getuser())
+        parser.add_argument('-p', '--password', type=Password, help='Specify password',
+                            default=decrypted)
+        args = parser.parse_args()
+    else:
+        parser = argparse.ArgumentParser(
+            formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+        parser.add_argument('-u', '--username', help='Specify username',
+                            default=getpass.getuser())
+        parser.add_argument('-p', '--password', type=Password, help='Specify password',
+                            default=Password.DEFAULT)
+        args = parser.parse_args()
 
     return args
 
